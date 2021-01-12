@@ -5,6 +5,9 @@
  */
 package kebab;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author porretta.christian
@@ -25,9 +28,14 @@ public class utente implements Runnable{
     public void run(){
         while(!stop){
             while(!soddisfatto){
-                soddisfatto = kebabbaro.sforna();
+                soddisfatto = kebab.prendiPanino();
                 if(soddisfatto){
                     System.out.println("Thread soddisfatto: "+ num);
+                    notifyAll();
+                }else{
+                    try {
+                        wait();
+                    } catch (InterruptedException ex) {}
                 }
             }
         }

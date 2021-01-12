@@ -12,17 +12,19 @@ import java.util.logging.Logger;
  *
  * @author porretta.christian
  */
-public class kebabbaro {
+public class kebabbaro extends Thread {
     
     public boolean kebab;
     
     public synchronized boolean sforna(){
         kebab = false;
+        prepara();
+        return kebab;
+    }
+    public void prepara(){
         try {
             Thread.sleep(3000);
             kebab = true;
-        }catch (InterruptedException ex) {
-         }
-        return kebab;
+        }catch (InterruptedException ex) {}
     }
 }
