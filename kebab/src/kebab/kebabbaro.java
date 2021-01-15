@@ -14,17 +14,19 @@ import java.util.logging.Logger;
  */
 public class kebabbaro extends Thread {
     
-    public boolean kebab;
+    private panino kebab;
+
+    public kebabbaro(panino kebab) {
+        this.kebab = kebab;
+    }
     
-    public synchronized boolean sforna(){
-        kebab = false;
+    public void run(){
         prepara();
-        return kebab;
+        kebab.paninoPronto();
     }
     public void prepara(){
         try {
             Thread.sleep(3000);
-            kebab = true;
-        }catch (InterruptedException ex) {}
+        } catch (InterruptedException ex) {}
     }
 }

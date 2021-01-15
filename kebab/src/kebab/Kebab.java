@@ -16,14 +16,18 @@ public class Kebab {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Thread [] t = new Thread [20];
-        kebabbaro k = new kebabbaro();
-        for(int i=0;i<20;i++){
-            t [i] = new Thread(new utente(k,i));
+        panino kebab = new panino();
+        Thread t[] = new Thread[20];
+        Thread kebabbaro = new kebabbaro(kebab);
+        for (int i = 0; i < 20; i++) {
+            t[i] = new Thread(new utente(kebab, i));
         }
-        for(int i=0;i<20;i++){
-            t [i].start();
+        
+        kebabbaro.start();
+        for (int i = 0; i < 20; i++) {
+            t[i].start();
         }
     }
-
 }
+
+

@@ -15,32 +15,34 @@ import java.util.logging.Logger;
 public class utente implements Runnable{
     
     private boolean soddisfatto = false;
-    private kebabbaro kebabbaro;
     private boolean stop = false;
-    int num;
+    private panino kebab;
+    private int numero;
 
-    public utente(kebabbaro kebabbaro, int num) {
-        this.kebabbaro = kebabbaro;
-        this.num = num;
+    public utente(panino kebab, int numero) {
+        this.kebab = kebab;
+        this.numero = numero;
     }
 
     @Override
-    public void run(){
-        while(!stop){
-            while(!soddisfatto){
+    public void run() {
+        while (!stop) {
+            while (!soddisfatto) {
                 soddisfatto = kebab.prendiPanino();
-                if(soddisfatto){
-                    System.out.println("Thread soddisfatto: "+ num);
-                    notifyAll();
-                }else{
+                if (soddisfatto) {
+                    System.out.println("THREAD SODDISFATTO: " + numero);
+                    notify();
+                } else {
                     try {
                         wait();
-                    } catch (InterruptedException ex) {}
+                    } catch (InterruptedException ex) {
+                    }
                 }
             }
         }
     }
-    public void termina(){
-        stop=true;
+
+    public void termina() {
+        stop = true;
     }
 }

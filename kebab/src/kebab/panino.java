@@ -11,6 +11,7 @@ package kebab;
  */
 public class panino {
     private boolean panino;
+    
     public synchronized boolean prendiPanino(){
         if(panino){
             panino = false;
@@ -18,7 +19,8 @@ public class panino {
         }
         return false;
     }
-    public synchronized boolean paninoPronto(){
+    
+    public synchronized void paninoPronto(){
         panino = true;
     }
 }
